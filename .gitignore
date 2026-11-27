@@ -1,0 +1,18 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Empty leftover nested repo
+libraries/ImGui/hi/
+
+# Build output
+x64/Debug/
+x64/Release/
+*.obj
+*.pdb
+*.ilk
+*.exp
+*.tlog
+*.lastbuildstate
+*.idb

@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{45c8170c-14f9-444e-8be3-d71989cc39dd}</ProjectGuid>
+    <RootNamespace>SpiderManHook</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <PropertyGroup>
+    <TargetName>SpiderManHook</TargetName>
+    <OutDir Condition="'$(Configuration)'=='Release'">$(ProjectDir)x64\BIN\</OutDir>
+    <OutDir Condition="'$(Configuration)'!='Release'">$(ProjectDir)x64\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)x64\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <IncludePath>$(projectdir);$(projectdir)libraries\;$(ProjectDir)libraries\opus\;$(ProjectDir)libraries\opus\include\;$(ProjectDir)libraries\opus\silk\;$(ProjectDir)libraries\opus\celt\;$(ProjectDir)libraries\opus\silk\float\;$(ProjectDir)libraries\minhook\include\;$(ProjectDir)libraries\minhook\src\;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CRT_SECURE_NO_WARNINGS;OPUS_BUILD;NONTHREADSAFE_PSEUDOSTACK;SPIDERMANHOOK_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CRT_SECURE_NO_WARNINGS;OPUS_BUILD;NONTHREADSAFE_PSEUDOSTACK;SPIDERMANHOOK_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_WARNINGS;OPUS_BUILD;NONTHREADSAFE_PSEUDOSTACK;SPIDERMANHOOK_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;SPIDERMANHOOK_EXPORTS;_WINDOWS;_USRDLL;OPUS_BUILD;NONTHREADSAFE_PSEUDOSTACK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="libraries\ImGui\Hookgui.hpp" />
+    <ClInclude Include="libraries\ImGui\imgui\imconfig.h" />
+    <ClInclude Include="libraries\ImGui\imgui\imgui.h" />
+    <ClInclude Include="libraries\ImGui\imgui\imgui_impl_dx11.h" />
+    <ClInclude Include="libraries\ImGui\imgui\imgui_impl_win32.h" />
+    <ClInclude Include="libraries\ImGui\imgui\imgui_internal.h" />
+    <ClInclude Include="libraries\ImGui\imgui\imstb_rectpack.h" />
+    <ClInclude Include="libraries\ImGui\imgui\imstb_textedit.h" />
+    <ClInclude Include="libraries\ImGui\imgui\imstb_truetype.h" />
+    <ClInclude Include="libraries\ImGui\imgui\spiderman_texture.h" />
+    <ClInclude Include="libraries\ImGui\imgui\skCrypt.hpp" />
+    <ClInclude Include="libraries\ImGui\spiderman.h" />
+    <ClInclude Include="libraries\lua\lapi.h" />
+    <ClInclude Include="libraries\lua\lauxlib.h" />
+    <ClInclude Include="libraries\lua\lcode.h" />
+    <ClInclude Include="libraries\lua\lctype.h" />
+    <ClInclude Include="libraries\lua\ldebug.h" />
+    <ClInclude Include="libraries\lua\ldo.h" />
+    <ClInclude Include="libraries\lua\lfunc.h" />
+    <ClInclude Include="libraries\lua\lgc.h" />
+    <ClInclude Include="libraries\lua\ljumptab.h" />
+    <ClInclude Include="libraries\lua\llex.h" />
+    <ClInclude Include="libraries\lua\llimits.h" />
+    <ClInclude Include="libraries\lua\lmem.h" />
+    <ClInclude Include="libraries\lua\lobject.h" />
+    <ClInclude Include="libraries\lua\lopcodes.h" />
+    <ClInclude Include="libraries\lua\lopnames.h" />
+    <ClInclude Include="libraries\lua\lparser.h" />
+    <ClInclude Include="libraries\lua\lprefix.h" />
+    <ClInclude Include="libraries\lua\lstate.h" />
+    <ClInclude Include="libraries\lua\lstring.h" />
+    <ClInclude Include="libraries\lua\ltable.h" />
+    <ClInclude Include="libraries\lua\ltm.h" />
+    <ClInclude Include="libraries\lua\lua.h" />
+    <ClInclude Include="libraries\lua\lua.hpp" />
+    <ClInclude Include="libraries\lua\luaconf.h" />
+    <ClInclude Include="libraries\lua\lualib.h" />
+    <ClInclude Include="libraries\lua\lundump.h" />
+    <ClInclude Include="libraries\lua\lvm.h" />
+    <ClInclude Include="libraries\lua\lzio.h" />
+    <ClInclude Include="libraries\minhook\include\MinHook.h" />
+    <ClInclude Include="libraries\minhook\src\buffer.h" />
+    <ClInclude Include="libraries\minhook\src\hde\hde32.h" />
+    <ClInclude Include="libraries\minhook\src\hde\hde64.h" />
+    <ClInclude Include="libraries\minhook\src\hde\pstdint.h" />
+    <ClInclude Include="libraries\minhook\src\hde\table32.h" />
+    <ClInclude Include="libraries\minhook\src\hde\table64.h" />
+    <ClInclude Include="libraries\minhook\src\trampoline.h" />
+    <ClInclude Include="libraries\opus\celt\arch.h" />
+    <ClInclude Include="libraries\opus\celt\bands.h" />
+    <ClInclude Include="libraries\opus\celt\celt.h" />
+    <ClInclude Include="libraries\opus\celt\celt_lpc.h" />
+    <ClInclude Include="libraries\opus\celt\cpu_support.h" />
+    <ClInclude Include="libraries\opus\celt\cwrs.h" />
+    <ClInclude Include="libraries\opus\celt\ecintrin.h" />
+    <ClInclude Include="libraries\opus\celt\entcode.h" />
+    <ClInclude Include="libraries\opus\celt\entdec.h" />
+    <ClInclude Include="libraries\opus\celt\entenc.h" />
+    <ClInclude Include="libraries\opus\celt\fixed_debug.h" />
+    <ClInclude Include="libraries\opus\celt\fixed_generic.h" />
+    <ClInclude Include="libraries\opus\celt\float_cast.h" />
+    <ClInclude Include="libraries\opus\celt\kiss_fft.h" />
+    <ClInclude Include="libraries\opus\celt\laplace.h" />
+    <ClInclude Include="libraries\opus\celt\mathops.h" />
+    <ClInclude Include="libraries\opus\celt\mdct.h" />
+    <ClInclude Include="libraries\opus\celt\mfrngcod.h" />
+    <ClInclude Include="libraries\opus\celt\mips\celt_mipsr1.h" />
+    <ClInclude Include="libraries\opus\celt\mips\fixed_generic_mipsr1.h" />
+    <ClInclude Include="libraries\opus\celt\mips\kiss_fft_mipsr1.h" />
+    <ClInclude Include="libraries\opus\celt\mips\mdct_mipsr1.h" />
+    <ClInclude Include="libraries\opus\celt\mips\pitch_mipsr1.h" />
+    <ClInclude Include="libraries\opus\celt\mips\vq_mipsr1.h" />
+    <ClInclude Include="libraries\opus\celt\modes.h" />
+    <ClInclude Include="libraries\opus\celt\os_support.h" />
+    <ClInclude Include="libraries\opus\celt\pitch.h" />
+    <ClInclude Include="libraries\opus\celt\quant_bands.h" />
+    <ClInclude Include="libraries\opus\celt\rate.h" />
+    <ClInclude Include="libraries\opus\celt\stack_alloc.h" />
+    <ClInclude Include="libraries\opus\celt\static_modes_fixed.h" />
+    <ClInclude Include="libraries\opus\celt\static_modes_fixed_arm_ne10.h" />
+    <ClInclude Include="libraries\opus\celt\static_modes_float.h" />
+    <ClInclude Include="libraries\opus\celt\static_modes_float_arm_ne10.h" />
+    <ClInclude Include="libraries\opus\celt\vq.h" />
+    <ClInclude Include="libraries\opus\celt\x86\celt_lpc_sse.h" />
+    <ClInclude Include="libraries\opus\celt\x86\pitch_sse.h" />
+    <ClInclude Include="libraries\opus\celt\x86\vq_sse.h" />
+    <ClInclude Include="libraries\opus\celt\x86\x86cpu.h" />
+    <ClInclude Include="libraries\opus\celt\_kiss_fft_guts.h" />
+    <ClInclude Include="libraries\opus\include\opus.h" />
+    <ClInclude Include="libraries\opus\include\opus_custom.h" />
+    <ClInclude Include="libraries\opus\include\opus_defines.h" />
+    <ClInclude Include="libraries\opus\include\opus_multistream.h" />
+    <ClInclude Include="libraries\opus\include\opus_projection.h" />
+    <ClInclude Include="libraries\opus\include\opus_types.h" />
+    <ClInclude Include="libraries\opus\silk\API.h" />
+    <ClInclude Include="libraries\opus\silk\control.h" />
+    <ClInclude Include="libraries\opus\silk\debug.h" />
+    <ClInclude Include="libraries\opus\silk\define.h" />
+    <ClInclude Include="libraries\opus\silk\errors.h" />
+    <ClInclude Include="libraries\opus\silk\fixed\main_FIX.h" />
+    <ClInclude Include="libraries\opus\silk\fixed\mips\noise_shape_analysis_FIX_mipsr1.h" />
+    <ClInclude Include="libraries\opus\silk\fixed\mips\warped_autocorrelation_FIX_mipsr1.h" />
+    <ClInclude Include="libraries\opus\silk\fixed\structs_FIX.h" />
+    <ClInclude Include="libraries\opus\silk\float\main_FLP.h" />
+    <ClInclude Include="libraries\opus\silk\float\SigProc_FLP.h" />
+    <ClInclude Include="libraries\opus\silk\float\structs_FLP.h" />
+    <ClInclude Include="libraries\opus\silk\Inlines.h" />
+    <ClInclude Include="libraries\opus\silk\MacroCount.h" />
+    <ClInclude Include="libraries\opus\silk\MacroDebug.h" />
+    <ClInclude Include="libraries\opus\silk\macros.h" />
+    <ClInclude Include="libraries\opus\silk\main.h" />
+    <ClInclude Include="libraries\opus\silk\mips\macros_mipsr1.h" />
+    <ClInclude Include="libraries\opus\silk\mips\NSQ_del_dec_mipsr1.h" />
+    <ClInclude Include="libraries\opus\silk\mips\sigproc_fix_mipsr1.h" />
+    <ClInclude Include="libraries\opus\silk\NSQ.h" />
+    <ClInclude Include="libraries\opus\silk\pitch_est_defines.h" />
+    <ClInclude Include="libraries\opus\silk\PLC.h" />
+    <ClInclude Include="libraries\opus\silk\resampler_private.h" />
+    <ClInclude Include="libraries\opus\silk\resampler_rom.h" />
+    <ClInclude Include="libraries\opus\silk\resampler_structs.h" />
+    <ClInclude Include="libraries\opus\silk\SigProc_FIX.h" />
+    <ClInclude Include="libraries\opus\silk\structs.h" />
+    <ClInclude Include="libraries\opus\silk\tables.h" />
+    <ClInclude Include="libraries\opus\silk\tuning_parameters.h" />
+    <ClInclude Include="libraries\opus\silk\typedef.h" />
+    <ClInclude Include="libraries\opus\silk\x86\main_sse.h" />
+    <ClInclude Include="libraries\opus\silk\x86\SigProc_FIX_sse.h" />
+    <ClInclude Include="libraries\opus\src\analysis.h" />
+    <ClInclude Include="libraries\opus\src\mapping_matrix.h" />
+    <ClInclude Include="libraries\opus\src\mlp.h" />
+    <ClInclude Include="libraries\opus\src\opus_private.h" />
+    <ClInclude Include="libraries\opus\src\tansig_table.h" />
+    <ClInclude Include="libraries\vst\VSTPlugin.h" />
+    <ClInclude Include="libraries\vst\VSTHost.h" />
+    <ClInclude Include="libraries\vstsdk24\pluginterfaces\vst2.x\aeffect.h" />
+    <ClInclude Include="libraries\vstsdk24\pluginterfaces\vst2.x\aeffectx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="libraries\ImGui\HookGui.cpp" />
+    <ClCompile Include="libraries\ImGui\imgui\imgui.cpp" />
+    <ClCompile Include="libraries\ImGui\imgui\imgui_demo.cpp" />
+    <ClCompile Include="libraries\ImGui\imgui\imgui_draw.cpp" />
+    <ClCompile Include="libraries\ImGui\imgui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="libraries\ImGui\imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="libraries\ImGui\imgui\imgui_tables.cpp" />
+    <ClCompile Include="libraries\ImGui\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="libraries\lua\lapi.c" />
+    <ClCompile Include="libraries\lua\lauxlib.c" />
+    <ClCompile Include="libraries\lua\lbaselib.c" />
+    <ClCompile Include="libraries\lua\lcode.c" />
+    <ClCompile Include="libraries\lua\lcorolib.c" />
+    <ClCompile Include="libraries\lua\lctype.c" />
+    <ClCompile Include="libraries\lua\ldblib.c" />
+    <ClCompile Include="libraries\lua\ldebug.c" />
+    <ClCompile Include="libraries\lua\ldo.c" />
+    <ClCompile Include="libraries\lua\ldump.c" />
+    <ClCompile Include="libraries\lua\lfunc.c" />
+    <ClCompile Include="libraries\lua\lgc.c" />
+    <ClCompile Include="libraries\lua\linit.c" />
+    <ClCompile Include="libraries\lua\liolib.c" />
+    <ClCompile Include="libraries\lua\llex.c" />
+    <ClCompile Include="libraries\lua\lmathlib.c" />
+    <ClCompile Include="libraries\lua\lmem.c" />
+    <ClCompile Include="libraries\lua\loadlib.c" />
+    <ClCompile Include="libraries\lua\lobject.c" />
+    <ClCompile Include="libraries\lua\lopcodes.c" />
+    <ClCompile Include="libraries\lua\loslib.c" />
+    <ClCompile Include="libraries\lua\lparser.c" />
+    <ClCompile Include="libraries\lua\lstate.c" />
+    <ClCompile Include="libraries\lua\lstring.c" />
+    <ClCompile Include="libraries\lua\lstrlib.c" />
+    <ClCompile Include="libraries\lua\ltable.c" />
+    <ClCompile Include="libraries\lua\ltablib.c" />
+    <ClCompile Include="libraries\lua\ltm.c" />
+    <ClCompile Include="libraries\lua\lua.c" />
+    <ClCompile Include="libraries\lua\luac.c" />
+    <ClCompile Include="libraries\lua\lundump.c" />
+    <ClCompile Include="libraries\lua\lutf8lib.c" />
+    <ClCompile Include="libraries\lua\lvm.c" />
+    <ClCompile Include="libraries\lua\lzio.c" />
+    <ClCompile Include="libraries\minhook\src\buffer.c" />
+    <ClCompile Include="libraries\minhook\src\hde\hde32.c" />
+    <ClCompile Include="libraries\minhook\src\hde\hde64.c" />
+    <ClCompile Include="libraries\minhook\src\hook.c" />
+    <ClCompile Include="libraries\minhook\src\trampoline.c" />
+    <ClCompile Include="libraries\opus\celt\bands.c" />
+    <ClCompile Include="libraries\opus\celt\celt.c" />
+    <ClCompile Include="libraries\opus\celt\celt_decoder.c" />
+    <ClCompile Include="libraries\opus\celt\celt_encoder.c" />
+    <ClCompile Include="libraries\opus\celt\celt_lpc.c" />
+    <ClCompile Include="libraries\opus\celt\cwrs.c" />
+    <ClCompile Include="libraries\opus\celt\entcode.c" />
+    <ClCompile Include="libraries\opus\celt\entdec.c" />
+    <ClCompile Include="libraries\opus\celt\entenc.c" />
+    <ClCompile Include="libraries\opus\celt\kiss_fft.c" />
+    <ClCompile Include="libraries\opus\celt\laplace.c" />
+    <ClCompile Include="libraries\opus\celt\mathops.c" />
+    <ClCompile Include="libraries\opus\celt\mdct.c" />
+    <ClCompile Include="libraries\opus\celt\modes.c" />
+    <ClCompile Include="libraries\opus\celt\pitch.c" />
+    <ClCompile Include="libraries\opus\celt\quant_bands.c" />
+    <ClCompile Include="libraries\opus\celt\rate.c" />
+    <ClCompile Include="libraries\opus\celt\vq.c" />
+    <ClCompile Include="libraries\opus\celt\x86\celt_lpc_sse4_1.c" />
+    <ClCompile Include="libraries\opus\celt\x86\pitch_sse.c" />
+    <ClCompile Include="libraries\opus\celt\x86\pitch_sse2.c" />
+    <ClCompile Include="libraries\opus\celt\x86\pitch_sse4_1.c" />
+    <ClCompile Include="libraries\opus\celt\x86\vq_sse2.c" />
+    <ClCompile Include="libraries\opus\celt\x86\x86cpu.c" />
+    <ClCompile Include="libraries\opus\celt\x86\x86_celt_map.c" />
+    <ClCompile Include="libraries\opus\silk\A2NLSF.c" />
+    <ClCompile Include="libraries\opus\silk\ana_filt_bank_1.c" />
+    <ClCompile Include="libraries\opus\silk\biquad_alt.c" />
+    <ClCompile Include="libraries\opus\silk\bwexpander.c" />
+    <ClCompile Include="libraries\opus\silk\bwexpander_32.c" />
+    <ClCompile Include="libraries\opus\silk\check_control_input.c" />
+    <ClCompile Include="libraries\opus\silk\CNG.c" />
+    <ClCompile Include="libraries\opus\silk\code_signs.c" />
+    <ClCompile Include="libraries\opus\silk\control_audio_bandwidth.c" />
+    <ClCompile Include="libraries\opus\silk\control_codec.c" />
+    <ClCompile Include="libraries\opus\silk\control_SNR.c" />
+    <ClCompile Include="libraries\opus\silk\debug.c" />
+    <ClCompile Include="libraries\opus\silk\decoder_set_fs.c" />
+    <ClCompile Include="libraries\opus\silk\decode_core.c" />
+    <ClCompile Include="libraries\opus\silk\decode_frame.c" />
+    <ClCompile Include="libraries\opus\silk\decode_indices.c" />
+    <ClCompile Include="libraries\opus\silk\decode_parameters.c" />
+    <ClCompile Include="libraries\opus\silk\decode_pitch.c" />
+    <ClCompile Include="libraries\opus\silk\decode_pulses.c" />
+    <ClCompile Include="libraries\opus\silk\dec_API.c" />
+    <ClCompile Include="libraries\opus\silk\encode_indices.c" />
+    <ClCompile Include="libraries\opus\silk\encode_pulses.c" />
+    <ClCompile Include="libraries\opus\silk\enc_API.c" />
+    <ClCompile Include="libraries\opus\silk\fixed\apply_sine_window_FIX.c" />
+    <ClCompile Include="libraries\opus\silk\fixed\autocorr_FIX.c" />
+    <ClCompile Include="libraries\opus\silk\fixed\corrMatrix_FIX.c" />
+    <ClCompile Include="libraries\opus\silk\fixed\find_LTP_FIX.c" />
+    <ClCompile Include="libraries\opus\silk\fixed\k2a_FIX.c" />
+    <ClCompile Include="libraries\opus\silk\fixed\k2a_Q16_FIX.c" />
+    <ClCompile Include="libraries\opus\silk\fixed\LTP_analysis_filter_FIX.c" />
+    <ClCompile Include="libraries\opus\silk\fixed\LTP_scale_ctrl_FIX.c" />
+    <ClCompile Include="libraries\opus\silk\fixed\noise_shape_analysis_FIX.c" />
+    <ClCompile Include="libraries\opus\silk\fixed\process_gains_FIX.c" />
+    <ClCompile Include="libraries\opus\silk\fixed\regularize_correlations_FIX.c" />
+    <ClCompile Include="libraries\opus\silk\fixed\residual_energy16_FIX.c" />
+    <ClCompile Include="libraries\opus\silk\fixed\residual_energy_FIX.c" />
+    <ClCompile Include="libraries\opus\silk\fixed\schur64_FIX.c" />
+    <ClCompile Include="libraries\opus\silk\fixed\schur_FIX.c" />
+    <ClCompile Include="libraries\opus\silk\fixed\vector_ops_FIX.c" />
+    <ClCompile Include="libraries\opus\silk\fixed\warped_autocorrelation_FIX.c" />
+    <ClCompile Include="libraries\opus\silk\fixed\x86\vector_ops_FIX_sse4_1.c" />
+    <ClCompile Include="libraries\opus\silk\float\apply_sine_window_FLP.c" />
+    <ClCompile Include="libraries\opus\silk\float\autocorrelation_FLP.c" />
+    <ClCompile Include="libraries\opus\silk\float\burg_modified_FLP.c" />
+    <ClCompile Include="libraries\opus\silk\float\bwexpander_FLP.c" />
+    <ClCompile Include="libraries\opus\silk\float\corrMatrix_FLP.c" />
+    <ClCompile Include="libraries\opus\silk\float\encode_frame_FLP.c" />
+    <ClCompile Include="libraries\opus\silk\float\energy_FLP.c" />
+    <ClCompile Include="libraries\opus\silk\float\find_LPC_FLP.c" />
+    <ClCompile Include="libraries\opus\silk\float\find_LTP_FLP.c" />
+    <ClCompile Include="libraries\opus\silk\float\find_pitch_lags_FLP.c" />
+    <ClCompile Include="libraries\opus\silk\float\find_pred_coefs_FLP.c" />
+    <ClCompile Include="libraries\opus\silk\float\inner_product_FLP.c" />
+    <ClCompile Include="libraries\opus\silk\float\k2a_FLP.c" />
+    <ClCompile Include="libraries\opus\silk\float\LPC_analysis_filter_FLP.c" />
+    <ClCompile Include="libraries\opus\silk\float\LPC_inv_pred_gain_FLP.c" />
+    <ClCompile Include="libraries\opus\silk\float\LTP_analysis_filter_FLP.c" />
+    <ClCompile Include="libraries\opus\silk\float\LTP_scale_ctrl_FLP.c" />
+    <ClCompile Include="libraries\opus\silk\float\noise_shape_analysis_FLP.c" />
+    <ClCompile Include="libraries\opus\silk\float\pitch_analysis_core_FLP.c" />
+    <ClCompile Include="libraries\opus\silk\float\process_gains_FLP.c" />
+    <ClCompile Include="libraries\opus\silk\float\regularize_correlations_FLP.c" />
+    <ClCompile Include="libraries\opus\silk\float\residual_energy_FLP.c" />
+    <ClCompile Include="libraries\opus\silk\float\scale_copy_vector_FLP.c" />
+    <ClCompile Include="libraries\opus\silk\float\scale_vector_FLP.c" />
+    <ClCompile Include="libraries\opus\silk\float\schur_FLP.c" />
+    <ClCompile Include="libraries\opus\silk\float\sort_FLP.c" />
+    <ClCompile Include="libraries\opus\silk\float\warped_autocorrelation_FLP.c" />
+    <ClCompile Include="libraries\opus\silk\float\wrappers_FLP.c" />
+    <ClCompile Include="libraries\opus\silk\gain_quant.c" />
+    <ClCompile Include="libraries\opus\silk\HP_variable_cutoff.c" />
+    <ClCompile Include="libraries\opus\silk\init_decoder.c" />
+    <ClCompile Include="libraries\opus\silk\init_encoder.c" />
+    <ClCompile Include="libraries\opus\silk\inner_prod_aligned.c" />
+    <ClCompile Include="libraries\opus\silk\interpolate.c" />
+    <ClCompile Include="libraries\opus\silk\lin2log.c" />
+    <ClCompile Include="libraries\opus\silk\log2lin.c" />
+    <ClCompile Include="libraries\opus\silk\LPC_analysis_filter.c" />
+    <ClCompile Include="libraries\opus\silk\LPC_fit.c" />
+    <ClCompile Include="libraries\opus\silk\LPC_inv_pred_gain.c" />
+    <ClCompile Include="libraries\opus\silk\LP_variable_cutoff.c" />
+    <ClCompile Include="libraries\opus\silk\NLSF2A.c" />
+    <ClCompile Include="libraries\opus\silk\NLSF_decode.c" />
+    <ClCompile Include="libraries\opus\silk\NLSF_del_dec_quant.c" />
+    <ClCompile Include="libraries\opus\silk\NLSF_encode.c" />
+    <ClCompile Include="libraries\opus\silk\NLSF_stabilize.c" />
+    <ClCompile Include="libraries\opus\silk\NLSF_unpack.c" />
+    <ClCompile Include="libraries\opus\silk\NLSF_VQ.c" />
+    <ClCompile Include="libraries\opus\silk\NLSF_VQ_weights_laroia.c" />
+    <ClCompile Include="libraries\opus\silk\NSQ.c" />
+    <ClCompile Include="libraries\opus\silk\NSQ_del_dec.c" />
+    <ClCompile Include="libraries\opus\silk\pitch_est_tables.c" />
+    <ClCompile Include="libraries\opus\silk\PLC.c" />
+    <ClCompile Include="libraries\opus\silk\process_NLSFs.c" />
+    <ClCompile Include="libraries\opus\silk\quant_LTP_gains.c" />
+    <ClCompile Include="libraries\opus\silk\resampler.c" />
+    <ClCompile Include="libraries\opus\silk\resampler_down2.c" />
+    <ClCompile Include="libraries\opus\silk\resampler_down2_3.c" />
+    <ClCompile Include="libraries\opus\silk\resampler_private_AR2.c" />
+    <ClCompile Include="libraries\opus\silk\resampler_private_down_FIR.c" />
+    <ClCompile Include="libraries\opus\silk\resampler_private_IIR_FIR.c" />
+    <ClCompile Include="libraries\opus\silk\resampler_private_up2_HQ.c" />
+    <ClCompile Include="libraries\opus\silk\resampler_rom.c" />
+    <ClCompile Include="libraries\opus\silk\shell_coder.c" />
+    <ClCompile Include="libraries\opus\silk\sigm_Q15.c" />
+    <ClCompile Include="libraries\opus\silk\sort.c" />
+    <ClCompile Include="libraries\opus\silk\stereo_decode_pred.c" />
+    <ClCompile Include="libraries\opus\silk\stereo_encode_pred.c" />
+    <ClCompile Include="libraries\opus\silk\stereo_find_predictor.c" />
+    <ClCompile Include="libraries\opus\silk\stereo_LR_to_MS.c" />
+    <ClCompile Include="libraries\opus\silk\stereo_MS_to_LR.c" />
+    <ClCompile Include="libraries\opus\silk\stereo_quant_pred.c" />
+    <ClCompile Include="libraries\opus\silk\sum_sqr_shift.c" />
+    <ClCompile Include="libraries\opus\silk\tables_gain.c" />
+    <ClCompile Include="libraries\opus\silk\tables_LTP.c" />
+    <ClCompile Include="libraries\opus\silk\tables_NLSF_CB_NB_MB.c" />
+    <ClCompile Include="libraries\opus\silk\tables_NLSF_CB_WB.c" />
+    <ClCompile Include="libraries\opus\silk\tables_other.c" />
+    <ClCompile Include="libraries\opus\silk\tables_pitch_lag.c" />
+    <ClCompile Include="libraries\opus\silk\tables_pulses_per_block.c" />
+    <ClCompile Include="libraries\opus\silk\table_LSF_cos.c" />
+    <ClCompile Include="libraries\opus\silk\VAD.c" />
+    <ClCompile Include="libraries\opus\silk\VQ_WMat_EC.c" />
+    <ClCompile Include="libraries\opus\silk\x86\NSQ_del_dec_sse4_1.c" />
+    <ClCompile Include="libraries\opus\silk\x86\NSQ_sse4_1.c" />
+    <ClCompile Include="libraries\opus\silk\x86\VAD_sse4_1.c" />
+    <ClCompile Include="libraries\opus\silk\x86\VQ_WMat_EC_sse4_1.c" />
+    <ClCompile Include="libraries\opus\silk\x86\x86_silk_map.c" />
+    <ClCompile Include="libraries\opus\src\analysis.c" />
+    <ClCompile Include="libraries\opus\src\mapping_matrix.c" />
+    <ClCompile Include="libraries\opus\src\mlp.c" />
+    <ClCompile Include="libraries\opus\src\mlp_data.c" />
+    <ClCompile Include="libraries\opus\src\opus.c" />
+    <ClCompile Include="libraries\opus\src\opus_decoder.c" />
+    <ClCompile Include="libraries\opus\src\opus_encoder.c" />
+    <ClCompile Include="libraries\opus\src\opus_multistream.c" />
+    <ClCompile Include="libraries\opus\src\opus_multistream_decoder.c" />
+    <ClCompile Include="libraries\opus\src\opus_multistream_encoder.c" />
+    <ClCompile Include="libraries\opus\src\opus_projection_decoder.c" />
+    <ClCompile Include="libraries\opus\src\opus_projection_encoder.c" />
+    <ClCompile Include="libraries\opus\src\repacketizer.c" />
+    <ClCompile Include="libraries\vst\VSTPlugin.cpp" />
+    <ClCompile Include="libraries\vst\VSTHost.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Processing.cpp" />
+    <ClCompile Include="Processingv2.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="libraries\minhook\lib\MinHook.x64.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libraries\opus\silk\meson.build" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
