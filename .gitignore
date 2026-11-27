@@ -6,6 +6,9 @@
 # Empty leftover nested repo
 libraries/ImGui/hi/
 
+# Local clone metadata for the vendored VST SDK headers
+libraries/vstsdk24/.git.orig/
+
 # Build output
 x64/Debug/
 x64/Release/
